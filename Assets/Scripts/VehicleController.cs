@@ -1,0 +1,32 @@
+using UnityEngine;
+using UnityEngine.InputSystem;
+
+public class VehicleController : MonoBehaviour
+{
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
+
+    private float desired_acceleration;
+    void Start()
+    {
+        desired_acceleration = 0;
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+
+        float dx = (Mouse.current.position.x.value - Screen.width / 2) / 200;
+        if (Mathf.Abs(dx) > 0.01f)
+        {
+            transform.Rotate(0, dx, 0);
+        }
+
+        GetComponent<Rigidbody>().AddRelativeForce(desired_acceleration*5, 0, 0); // force defined in Newtons
+    }   
+
+    void OnMove(InputValue action)
+    {
+        var movement = action.Get<Vector2>();
+        desired_acceleration = movement.y;
+    }
+}
