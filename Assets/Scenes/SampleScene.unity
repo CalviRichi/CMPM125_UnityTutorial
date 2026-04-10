@@ -5250,8 +5250,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 2.4606323, y: 2.1352425, z: 4.205658}
-  m_Center: {x: 0.009597778, y: -0.32164723, z: 0.20748901}
+  m_Size: {x: 2.374209, y: 1.5684888, z: 4.2371683}
+  m_Center: {x: 0.07550947, y: 0.03125477, z: 0.21450505}
 --- !u!23 &1669201725
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -5364,8 +5364,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc8d2aeea6d214876b8e7ab7246b89c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  impulse: 15
-  turnrate: 2000
+  impulse: 16
+  turnrate: 1500
   lapCount: 0
   timelbl: {fileID: 540783051}
   target: {fileID: 792082872}
