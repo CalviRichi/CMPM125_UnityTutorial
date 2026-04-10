@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using TMPro;
+using UnityEngine.UIElements;
 
 public class VehicleController : MonoBehaviour
 {
@@ -11,7 +12,10 @@ public class VehicleController : MonoBehaviour
     public float impulse;
     public float turnrate;
 
+    public uint lapCount;
+
     private float starttime;
+    private float raceStart;
     public TextMeshProUGUI timelbl;
 
     public CheckpointController target;
@@ -20,7 +24,10 @@ public class VehicleController : MonoBehaviour
         desired_acceleration_x = 0;
         desired_acceleration_z = 0;
 
+        lapCount = 0;
+
         starttime = Time.time;
+        raceStart = starttime;
 
         target.left.materials[0].color = Color.red;
         target.right.materials[0].color = Color.red;
@@ -40,13 +47,26 @@ public class VehicleController : MonoBehaviour
 
         GetComponent<Rigidbody>().AddRelativeForce(desired_acceleration_x*impulse, 0, desired_acceleration_z*impulse); // force defined in Newtons
         // the original 5 was fairly fast
-        timelbl.text = string.Format("Current time: {0:F2} seconds", (Time.time - starttime));
+        //timelbl.text = string.Format("Lap {} | Time: {0:F2} seconds\n" + 
+        //"Total Time: {0:F2} seconds", lapCount, (Time.time - starttime), (Time.time - raceStart));
+        timelbl.text = string.Format("Lap {0} | Time: {1:F2} seconds\n" + 
+        "Total Time: {2:F2}", lapCount, (Time.time - starttime), (Time.time - raceStart));
     }   
 
     void OnMove(InputValue action)
     {
         var movement = action.Get<Vector2>();
-        desired_acceleration_x = movement.y;
-        desired_acceleration_z = -movement.x;
+        desired_acceleration_x = movement.x;
+        desired_acceleration_z = movement.y;
+    }
+
+    public void UpdateLap()
+    {
+        if (lapCount++ == 0)
+        {
+            return;
+        }
+        starttime = Time.time;
+
     }
 }
