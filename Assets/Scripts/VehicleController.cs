@@ -27,7 +27,7 @@ public class VehicleController : MonoBehaviour
             transform.Rotate(0, dx, 0);
         }
 
-        GetComponent<Rigidbody>().AddRelativeForce(desired_acceleration_x*impulse, 0, desired_acceleration_z*(impulse * 0.66f)); // force defined in Newtons
+        GetComponent<Rigidbody>().AddRelativeForce(desired_acceleration_x*impulse, 0, desired_acceleration_z*impulse); // force defined in Newtons
         // the original 5 was fairly fast
     }   
 
