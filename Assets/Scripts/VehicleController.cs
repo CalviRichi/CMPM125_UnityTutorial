@@ -15,13 +15,16 @@ public class VehicleController : MonoBehaviour
     void Update()
     {
 
-        float dx = (Mouse.current.position.x.value - Screen.width / 2) / 200;
+        float dx = (Mouse.current.position.x.value - Screen.width / 2) / 1500; // this is very sensitive (was originally 200)
+        // how far the mouse is to the right/left of center of screen, then divided to make it a managable value
+    
         if (Mathf.Abs(dx) > 0.01f)
         {
             transform.Rotate(0, dx, 0);
         }
 
-        GetComponent<Rigidbody>().AddRelativeForce(desired_acceleration*5, 0, 0); // force defined in Newtons
+        GetComponent<Rigidbody>().AddRelativeForce(desired_acceleration*2, 0, 0); // force defined in Newtons
+        // the original 5 was fairly fast
     }   
 
     void OnMove(InputValue action)
