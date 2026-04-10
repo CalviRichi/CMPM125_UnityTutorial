@@ -9,6 +9,8 @@ public class VehicleController : MonoBehaviour
     private float desired_acceleration_z;
     public float impulse;
     public float turnrate;
+
+    public CheckpointController target;
     void Start()
     {
         desired_acceleration_x = 0;
