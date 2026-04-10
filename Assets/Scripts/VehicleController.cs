@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using TMPro;
 
 public class VehicleController : MonoBehaviour
 {
@@ -10,11 +11,19 @@ public class VehicleController : MonoBehaviour
     public float impulse;
     public float turnrate;
 
+    private float starttime;
+    public TextMeshProUGUI timelbl;
+
     public CheckpointController target;
     void Start()
     {
         desired_acceleration_x = 0;
         desired_acceleration_z = 0;
+
+        starttime = Time.time;
+
+        target.left.materials[0].color = Color.red;
+        target.right.materials[0].color = Color.red;
     }
 
     // Update is called once per frame
@@ -31,6 +40,7 @@ public class VehicleController : MonoBehaviour
 
         GetComponent<Rigidbody>().AddRelativeForce(desired_acceleration_x*impulse, 0, desired_acceleration_z*impulse); // force defined in Newtons
         // the original 5 was fairly fast
+        timelbl.text = string.Format("Current time: {0:F2} seconds", (Time.time - starttime));
     }   
 
     void OnMove(InputValue action)

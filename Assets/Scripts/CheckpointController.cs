@@ -22,7 +22,15 @@ public class CheckpointController : MonoBehaviour
         //Debug.Log("trigger enter " + other.transform.name);
         VehicleController vehicle = other.gameObject.GetComponent<VehicleController>();
         if (vehicle != null) {
-
+            if (vehicle.target == this)
+            {
+                vehicle.target = next;
+                
+                next.left.materials[0].color = Color.red;
+                next.right.materials[0].color = Color.red;
+                left.materials[0].color = Color.white;
+                right.materials[0].color = Color.white;
+            } 
         }
     }
 }
